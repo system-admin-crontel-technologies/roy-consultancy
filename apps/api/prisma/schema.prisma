@@ -1,0 +1,452 @@
+// Roy Consultancy Operations Platform - database schema
+// Phase 1 (Super Admin): identity & access, platform configuration, audit, service catalogue.
+// Conventions: UUID primary keys, snake_case table names, UTC timestamps, money in integer minor units (paise).
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------------------
+// Identity & access
+// ---------------------------------------------------------------------------
+
+enum UserStatus {
+  INVITED
+  ACTIVE
+  SUSPENDED
+  DISABLED
+}
+
+model User {
+  id                String     @id @default(uuid()) @db.Uuid
+  email             String     @unique
+  fullName          String
+  phone             String?
+  passwordHash      String?
+  status            UserStatus @default(INVITED)
+  departmentId      String?    @db.Uuid
+  managerId         String?    @db.Uuid
+  mfaEnabled        Boolean    @default(false)
+  lastLoginAt       DateTime?
+  passwordChangedAt DateTime?
+  failedLoginCount  Int        @default(0)
+  lockedUntil       DateTime?
+  isDemo            Boolean    @default(false)
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  createdById       String?    @db.Uuid
+  updatedById       String?    @db.Uuid
+
+  department   Department? @relation(fields: [departmentId], references: [id])
+  manager      User?       @relation("UserManager", fields: [managerId], references: [id])
+  reports      User[]      @relation("UserManager")
+  roles        UserRole[]
+  sessions     Session[]
+  tokens       UserToken[]
+  authEvents   AuthEvent[]
+  auditEvents  AuditLog[]  @relation("AuditActor")
+  ownedServices Service[]  @relation("ServiceOwner")
+
+  @@index([status])
+  @@index([departmentId])
+  @@map("users")
+}
+
+model Department {
+  id        String   @id @default(uuid()) @db.Uuid
+  code      String   @unique
+  name      String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users User[]
+
+  @@map("departments")
+}
+
+model Role {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique
+  name        String
+  description String?
+  isSystem    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  permissions RolePermission[]
+  users       UserRole[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique
+  module      String
+  description String
+  createdAt   DateTime @default(now())
+
+  roles RolePermission[]
+
+  @@index([module])
+  @@map("permissions")
+}
+
+model RolePermission {
+  roleId       String   @db.Uuid
+  permissionId String   @db.Uuid
+  grantedAt    DateTime @default(now())
+  grantedById  String?  @db.Uuid
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model UserRole {
+  userId       String   @db.Uuid
+  roleId       String   @db.Uuid
+  assignedAt   DateTime @default(now())
+  assignedById String?  @db.Uuid
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId])
+  @@map("user_roles")
+}
+
+enum SessionClient {
+  WEB
+  MOBILE
+  API
+}
+
+model Session {
+  id               String        @id @default(uuid()) @db.Uuid
+  userId           String        @db.Uuid
+  familyId         String        @db.Uuid
+  refreshTokenHash String        @unique
+  client           SessionClient @default(WEB)
+  userAgent        String?
+  ipAddress        String?
+  createdAt        DateTime      @default(now())
+  lastUsedAt       DateTime      @default(now())
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  revokedReason    String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, revokedAt])
+  @@index([familyId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+enum UserTokenType {
+  INVITE
+  PASSWORD_RESET
+}
+
+model UserToken {
+  id        String        @id @default(uuid()) @db.Uuid
+  userId    String        @db.Uuid
+  type      UserTokenType
+  tokenHash String        @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime      @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, type])
+  @@map("user_tokens")
+}
+
+enum AuthEventType {
+  LOGIN_SUCCESS
+  LOGIN_FAILED
+  LOGOUT
+  TOKEN_REFRESHED
+  REFRESH_REUSE_DETECTED
+  PASSWORD_RESET_REQUESTED
+  PASSWORD_RESET_COMPLETED
+  PASSWORD_CHANGED
+  INVITE_SENT
+  INVITE_ACCEPTED
+  SESSION_REVOKED
+  ALL_SESSIONS_REVOKED
+  ACCOUNT_LOCKED
+}
+
+model AuthEvent {
+  id         String        @id @default(uuid()) @db.Uuid
+  userId     String?       @db.Uuid
+  email      String?
+  type       AuthEventType
+  ipAddress  String?
+  userAgent  String?
+  metadata   Json?
+  occurredAt DateTime      @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId, occurredAt])
+  @@index([type, occurredAt])
+  @@map("auth_events")
+}
+
+// ---------------------------------------------------------------------------
+// Platform configuration & audit
+// ---------------------------------------------------------------------------
+
+model SystemSetting {
+  key         String   @id
+  value       Json
+  description String?
+  updatedAt   DateTime @updatedAt
+  updatedById String?  @db.Uuid
+
+  @@map("system_settings")
+}
+
+enum SequenceResetPolicy {
+  NEVER
+  CALENDAR_YEAR
+  FINANCIAL_YEAR
+}
+
+model NumberingSequence {
+  key         String              @id
+  label       String
+  prefix      String
+  padding     Int                 @default(5)
+  nextValue   Int                 @default(1)
+  resetPolicy SequenceResetPolicy @default(NEVER)
+  periodKey   String?
+  updatedAt   DateTime            @updatedAt
+  updatedById String?             @db.Uuid
+
+  @@map("numbering_sequences")
+}
+
+enum AuditActorType {
+  USER
+  SYSTEM
+}
+
+enum AuditOutcome {
+  SUCCESS
+  FAILURE
+  DENIED
+}
+
+/// Append-only. A database trigger (see migration) rejects UPDATE and DELETE.
+model AuditLog {
+  id            String         @id @default(uuid()) @db.Uuid
+  occurredAt    DateTime       @default(now())
+  actorType     AuditActorType @default(USER)
+  actorUserId   String?        @db.Uuid
+  actorLabel    String?
+  action        String
+  resourceType  String
+  resourceId    String?
+  outcome       AuditOutcome   @default(SUCCESS)
+  correlationId String?
+  ipAddress     String?
+  userAgent     String?
+  before        Json?
+  after         Json?
+  metadata      Json?
+
+  actor User? @relation("AuditActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([occurredAt])
+  @@index([actorUserId, occurredAt])
+  @@index([resourceType, resourceId])
+  @@index([action])
+  @@map("audit_logs")
+}
+
+enum IntegrationStatus {
+  NOT_CONFIGURED
+  ACTIVE
+  DISABLED
+  ERROR
+}
+
+model IntegrationAccount {
+  key               String            @id
+  name              String
+  category          String
+  provider          String?
+  status            IntegrationStatus @default(NOT_CONFIGURED)
+  config            Json?
+  secretRef         String?
+  lastHealthCheckAt DateTime?
+  lastHealthOk      Boolean?
+  lastError         String?
+  updatedAt         DateTime          @updatedAt
+  updatedById       String?           @db.Uuid
+
+  @@map("integration_accounts")
+}
+
+// ---------------------------------------------------------------------------
+// Service catalogue (admin configuration side of Module 4)
+// ---------------------------------------------------------------------------
+
+model ServiceCategory {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique
+  name        String
+  description String?
+  parentId    String?  @db.Uuid
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  isDemo      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  parent   ServiceCategory?  @relation("CategoryParent", fields: [parentId], references: [id])
+  children ServiceCategory[] @relation("CategoryParent")
+  services Service[]
+
+  @@map("service_categories")
+}
+
+enum ServiceStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  RETIRED
+}
+
+model Service {
+  id                String        @id @default(uuid()) @db.Uuid
+  code              String        @unique
+  name              String
+  categoryId        String        @db.Uuid
+  status            ServiceStatus @default(DRAFT)
+  shortDescription  String?
+  ownerUserId       String?       @db.Uuid
+  reviewCadenceDays Int?
+  lastVerifiedAt    DateTime?
+  isDemo            Boolean       @default(false)
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  createdById       String?       @db.Uuid
+  updatedById       String?       @db.Uuid
+
+  category ServiceCategory  @relation(fields: [categoryId], references: [id])
+  owner    User?            @relation("ServiceOwner", fields: [ownerUserId], references: [id])
+  versions ServiceVersion[]
+
+  @@index([categoryId, status])
+  @@map("services")
+}
+
+enum BillingType {
+  ONE_TIME
+  RECURRING
+  ANNUAL_PACKAGE
+}
+
+/// Immutable once published. Orders and cases reference the version used at sale.
+model ServiceVersion {
+  id                     String      @id @default(uuid()) @db.Uuid
+  serviceId              String      @db.Uuid
+  versionNumber          Int
+  isCurrent              Boolean     @default(false)
+  effectiveFrom          DateTime    @db.Date
+  effectiveTo            DateTime?   @db.Date
+  summary                String?
+  eligibilityNotes       String?
+  exclusions             String?
+  jurisdiction           String?
+  expectedTurnaroundDays Int?
+  billingType            BillingType @default(ONE_TIME)
+  recurrenceMonths       Int?
+  /// Array of { key, label, required, conditional?, notes? } - validated in application code
+  requiredInputs         Json        @default("[]")
+  /// Array of { key, label, required, conditional?, sensitivity } - validated in application code
+  requiredDocuments      Json        @default("[]")
+  /// Array of { key, title, role, dependsOn?, targetDays?, reviewerGate? }
+  taskTemplate           Json        @default("[]")
+  /// Array of { key, label }
+  deliverables           Json        @default("[]")
+  closureCriteria        Json        @default("[]")
+  publishedAt            DateTime?
+  createdAt              DateTime    @default(now())
+  createdById            String?     @db.Uuid
+
+  service Service        @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  price   ServicePrice?
+
+  @@unique([serviceId, versionNumber])
+  @@index([serviceId, isCurrent])
+  @@map("service_versions")
+}
+
+/// Money columns are integer minor units (paise for INR). Tax rate in basis points (1800 = 18%).
+model ServicePrice {
+  id                      String   @id @default(uuid()) @db.Uuid
+  serviceVersionId        String   @unique @db.Uuid
+  currency                String   @default("INR")
+  professionalFeeMinor    Int      @default(0)
+  governmentFeeMinor      Int      @default(0)
+  thirdPartyChargesMinor  Int      @default(0)
+  taxRateBps              Int      @default(0)
+  taxConfigRef            String?
+  governmentFeeIsEstimate Boolean  @default(true)
+  notes                   String?
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  version ServiceVersion @relation(fields: [serviceVersionId], references: [id], onDelete: Cascade)
+
+  @@map("service_prices")
+}
+
+// ---------------------------------------------------------------- website enquiries
+
+enum EnquiryStatus {
+  NEW
+  CONTACTED
+  CONVERTED
+  CLOSED
+}
+
+/// Public website enquiry form submissions (future input to the CRM lead pipeline, SRS Module 2).
+model WebsiteEnquiry {
+  id            String        @id @default(uuid()) @db.Uuid
+  name          String
+  phone         String
+  email         String?
+  service       String
+  message       String?
+  status        EnquiryStatus @default(NEW)
+  sourcePage    String?
+  ipAddress     String?
+  userAgent     String?
+  correlationId String?
+  notes         String?
+  handledById   String?       @db.Uuid
+  handledAt     DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([status, createdAt])
+  @@index([phone])
+  @@map("website_enquiries")
+}

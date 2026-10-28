@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#FFFFFF;color:#13303A;font-family:'Nunito Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#13303A;text-decoration:none}
+a:hover{color:#EE8B2B}
+button{font-family:inherit}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#FFFFFF">
+
+<div style="background:#163E4A;color:#FFFFFF">
+<header style="max-width:1240px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+  <a href="Home v2 Template.dc.html" style="display:flex;align-items:center;gap:12px;color:#FFFFFF" style-hover="color:#FFFFFF">
+    <span style="width:40px;height:44px;border:1.5px solid #FFFFFF;border-radius:4px 4px 20px 20px;display:grid;place-items:center;font-family:'Lora',serif;font-size:20px;font-weight:600">R</span>
+    <span style="display:flex;flex-direction:column;line-height:1.1">
+      <span style="font-family:'Lora',serif;font-size:21px;font-weight:600;letter-spacing:0.02em;white-space:nowrap">ROY CONSULTANCY</span>
+      <span style="font-size:11px;letter-spacing:0.08em;color:#B9CCD2;white-space:nowrap">advocate · corporate &amp; tax</span>
+    </span>
+  </a>
+  <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+    <nav style="display:flex;align-items:center;gap:30px;font-size:14.5px;white-space:nowrap">
+      <a href="Home v2 Template.dc.html" style="color:#FFFFFF;font-weight:700">Home</a>
+      <a href="Services v2.dc.html" style="color:#D6E1E5">Services</a>
+      <a href="About v2.dc.html" style="color:#D6E1E5">About</a>
+      <a href="Contact v2.dc.html" style="color:#D6E1E5">Contact</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:22px;white-space:nowrap">
+      <a href="tel:+910000000000" style="color:#FFFFFF;font-weight:700;font-size:14.5px;display:flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="#EE8B2B" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"></path></svg>+91 00000 00000</a>
+      <a href="Contact v2.dc.html" style="background:#EE8B2B;color:#FFFFFF;padding:11px 20px;border-radius:3px;font-weight:700;font-size:14px" style-hover="background:#D97A1F;color:#FFFFFF">Get a quote</a>
+    </div>
+  </sc-if>
+  <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+    <button onClick="{{ toggleMenu }}" style="background:none;border:1px solid #FFFFFF;border-radius:3px;padding:9px 14px;font-size:14px;cursor:pointer;color:#FFFFFF">{{ menuLabel }}</button>
+  </sc-if>
+</header>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:1240px;margin:0 auto;padding:0 28px 18px;display:flex;flex-direction:column">
+    <a href="Home v2 Template.dc.html" style="padding:14px 0;border-top:1px solid #2B5361;font-size:18px;font-family:'Lora',serif;color:#EE8B2B">Home</a>
+    <a href="Services v2.dc.html" style="padding:14px 0;border-top:1px solid #2B5361;font-size:18px;font-family:'Lora',serif;color:#FFFFFF">Services</a>
+    <a href="About v2.dc.html" style="padding:14px 0;border-top:1px solid #2B5361;font-size:18px;font-family:'Lora',serif;color:#FFFFFF">About</a>
+    <a href="Contact v2.dc.html" style="padding:14px 0;border-top:1px solid #2B5361;border-bottom:1px solid #2B5361;font-size:18px;font-family:'Lora',serif;color:#FFFFFF">Contact</a>
+    <a href="tel:+910000000000" style="padding:14px 0;font-size:15px;color:#FFFFFF;font-weight:700;display:flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="#EE8B2B" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"></path></svg>+91 00000 00000</a>
+  </div>
+</sc-if>
+
+<section style="max-width:1240px;margin:0 auto;padding:56px 28px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px 56px;align-items:end">
+  <div style="display:flex;flex-direction:column;gap:26px;padding-bottom:72px;min-width:0">
+    <h1 style="margin:0;font-family:'Lora',serif;font-weight:500;font-size:clamp(38px,4.4vw,60px);line-height:1.12;letter-spacing:-0.01em;text-wrap:balance">Your Trusted Advocate For Filings, Tax And Trademarks.</h1>
+    <p style="margin:0;font-size:15.5px;line-height:1.7;color:#C9D7DC;max-width:520px;text-wrap:pretty">Roy Consultancy is an advocate-led practice for ROC filings, GST, trademarks and company registration. One point of contact, a written checklist and a fixed fee — every time.</p>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <a href="Contact v2.dc.html" style="background:#EE8B2B;color:#FFFFFF;padding:14px 24px;border-radius:3px;font-weight:700;font-size:14.5px;white-space:nowrap" style-hover="background:#D97A1F;color:#FFFFFF">Schedule a consultation</a>
+      <a href="Contact v2.dc.html" style="border:1px solid #FFFFFF;color:#FFFFFF;padding:13px 24px;border-radius:3px;font-weight:700;font-size:14.5px;white-space:nowrap" style-hover="background:#FFFFFF;color:#163E4A">Contact us</a>
+    </div>
+    <div style="display:flex;gap:0;margin-top:10px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:4px;padding-right:32px;border-right:1px solid #3C6673">
+        <span style="font-family:'Lora',serif;font-size:36px;line-height:1">500+</span>
+        <span style="font-size:12.5px;color:#B9CCD2">Filings completed</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding-left:32px">
+        <span style="font-family:'Lora',serif;font-size:36px;line-height:1">98%</span>
+        <span style="font-size:12.5px;color:#B9CCD2">Filed before due date</span>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;justify-self:end;width:100%;max-width:560px;aspect-ratio:1/1.05;min-width:0">
+    <div style="position:absolute;inset:0 0 56px 56px;border-radius:260px 0 0 0;overflow:hidden">
+      <image-slot id="hero-photo" shape="rect" placeholder="Hero photo — advocate at work or the office"></image-slot>
+    </div>
+    <div style="position:absolute;left:0;top:36px;width:50px;height:50px;background:#2B5361;display:grid;place-items:center;color:#FFFFFF;font-family:'Lora',serif;font-size:22px">§</div>
+    <div style="position:absolute;left:0;bottom:0;width:48%;min-width:170px;background:#FFFFFF;color:#13303A;padding:22px 20px;text-align:center;display:flex;flex-direction:column;gap:4px;box-shadow:0 14px 34px rgba(0,0,0,0.18)">
+      <span style="font-family:'Lora',serif;font-size:34px;line-height:1">10+</span>
+      <span style="font-size:12.5px;color:#56707A">Years in practice</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<section style="max-width:1240px;margin:0 auto;padding:100px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px 64px;align-items:center">
+  <div style="position:relative;padding:28px 0 0 28px;min-width:0">
+    <div style="position:absolute;left:0;top:0;width:170px;height:170px;border-radius:50%;background:repeating-radial-gradient(circle at 0 0,#CBD6DB 0 1px,transparent 1px 9px);opacity:0.9"></div>
+    <div style="position:relative;width:100%;aspect-ratio:4/3.3;overflow:hidden;border-radius:3px">
+      <image-slot id="about-photo" shape="rect" placeholder="Consultation photo"></image-slot>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+    <span style="align-self:flex-start;background:#E6EDF0;color:#2B5361;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:2px">About us</span>
+    <h2 style="margin:0;font-family:'Lora',serif;font-weight:500;font-size:clamp(30px,3.6vw,44px);line-height:1.18;text-wrap:balance">An Advocate, Not A Filing Agent, Looking After Your Compliance</h2>
+    <p style="margin:0;font-size:15px;line-height:1.75;color:#4B6068">A filing is a legal document. Roy Consultancy brings legal training to everyday compliance — incorporation, ROC returns, GST and trademarks — so your paperwork stands up if it is ever questioned.</p>
+    <p style="margin:0;font-size:15px;line-height:1.75;color:#4B6068">Every engagement starts with a written checklist and a fixed quote. Notices, objections and hearings are handled in-house, not passed on.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:16px 20px;margin-top:8px;max-width:420px">
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <span style="font-family:'Lora',serif;font-size:28px;line-height:1">10+</span>
+        <span style="font-size:12.5px;color:#56707A">Years in practice</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding-left:20px;border-left:1px solid #DDE5E8">
+        <span style="font-family:'Lora',serif;font-size:28px;line-height:1">500+</span>
+        <span style="font-size:12.5px;color:#56707A">Filings completed</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;padding-left:20px;border-left:1px solid #DDE5E8">
+        <span style="font-family:'Lora',serif;font-size:28px;line-height:1">4.9</span>
+        <span style="font-size:12.5px;color:#56707A">Google rating</span>
+      </div>
+    </div>
+    <a href="Contact v2.dc.html" style="align-self:flex-start;margin-top:10px;background:#EE8B2B;color:#FFFFFF;padding:13px 22px;border-radius:3px;font-weight:700;font-size:14px;white-space:nowrap" style-hover="background:#D97A1F;color:#FFFFFF">Request a case evaluation</a>
+  </div>
+</section>
+
+<section style="background:#E9EEF1">
+  <div style="max-width:1240px;margin:0 auto;padding:96px 28px;display:flex;flex-direction:column;align-items:center;gap:16px">
+    <span style="background:#D4DEE3;color:#2B5361;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:2px">Practice areas</span>
+    <h2 style="margin:0 0 28px;font-family:'Lora',serif;font-weight:500;font-size:clamp(30px,3.6vw,44px);line-height:1.15;text-align:center">What We File, Register And Protect</h2>
+    <div style="width:100%;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px">
+      <sc-for list="{{ areas }}" as="a" hint-placeholder-count="6">
+        <a href="Services v2.dc.html" style="position:relative;background:#FFFFFF;padding:26px 26px 30px;display:flex;flex-direction:column;gap:12px;min-height:150px;overflow:hidden;color:#13303A;border-radius:3px" style-hover="color:#13303A;box-shadow:0 10px 30px rgba(22,62,74,0.10)">
+          <h3 style="margin:0;font-family:'Lora',serif;font-weight:500;font-size:21px;line-height:1.25">{{ a.title }}</h3>
+          <p style="margin:0;font-size:13.5px;line-height:1.65;color:#4B6068;max-width:78%">{{ a.desc }}</p>
+          <span style="margin-top:auto;font-size:12.5px;font-weight:700;color:{{ a.linkColor }}">Read more ↗</span>
+          <span style="position:absolute;right:0;bottom:0;width:72px;height:72px;border-radius:72px 0 0 0;background:{{ a.badge }};display:grid;place-items:center;padding:10px 0 0 10px;box-sizing:border-box;color:#FFFFFF;font-family:'Lora',serif;font-size:20px">{{ a.glyph }}</span>
+        </a>
+      </sc-for>
+    </div>
+    <a href="Services v2.dc.html" style="margin-top:28px;background:#EE8B2B;color:#FFFFFF;padding:13px 22px;border-radius:3px;font-weight:700;font-size:14px;white-space:nowrap" style-hover="background:#D97A1F;color:#FFFFFF">View all services</a>
+  </div>
+</section>
+
+<sc-if value="{{ showWork }}" hint-placeholder-val="{{ true }}">
+<section style="max-width:1240px;margin:0 auto;padding:96px 28px;display:flex;flex-direction:column;align-items:center;gap:16px">
+  <span style="background:#E6EDF0;color:#2B5361;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:2px">Recent matters</span>
+  <h2 style="margin:0 0 28px;font-family:'Lora',serif;font-weight:500;font-size:clamp(30px,3.6vw,44px);line-height:1.15;text-align:center">How We Have Helped Businesses Like Yours</h2>
+  <div style="width:100%;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:22px">
+    <sc-for list="{{ work }}" as="w" hint-placeholder-count="3">
+      <div style="display:flex;flex-direction:column;border-radius:3px;overflow:hidden;box-shadow:0 10px 30px rgba(22,62,74,0.08)">
+        <div style="width:100%;aspect-ratio:1/0.92;position:relative"><image-slot id="{{ w.slot }}" shape="rect" placeholder="{{ w.ph }}"></image-slot></div>
+        <div style="background:#FFFFFF;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+          <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+            <span style="font-size:12px;color:#2B5361;font-weight:600">{{ w.tag }}</span>
+            <span style="font-family:'Lora',serif;font-size:19px;line-height:1.25">{{ w.title }}</span>
+          </div>
+          <a href="Contact v2.dc.html" style="flex:none;width:42px;height:42px;border-radius:50%;background:{{ w.btn }};color:#FFFFFF;display:grid;place-items:center;font-size:16px" style-hover="color:#FFFFFF;opacity:0.9">↗</a>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <a href="Contact v2.dc.html" style="margin-top:28px;background:#EE8B2B;color:#FFFFFF;padding:13px 22px;border-radius:3px;font-weight:700;font-size:14px;white-space:nowrap" style-hover="background:#D97A1F;color:#FFFFFF">Discuss your matter</a>
+</section>
+</sc-if>
+
+<footer style="background:#163E4A;color:#B9CCD2">
+  <div style="max-width:1240px;margin:0 auto;padding:64px 28px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span style="font-family:'Lora',serif;font-size:22px;color:#FFFFFF;font-weight:600;letter-spacing:0.02em">ROY CONSULTANCY</span>
+      <span style="font-size:14px;line-height:1.6">Advocate-led corporate, tax and IP compliance.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px">
+      <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#FFFFFF;font-weight:700">Pages</span>
+      <a href="Home v2 Template.dc.html" style="color:#D6E1E5" style-hover="color:#EE8B2B">Home</a>
+      <a href="Services v2.dc.html" style="color:#D6E1E5" style-hover="color:#EE8B2B">Services</a>
+      <a href="About v2.dc.html" style="color:#D6E1E5" style-hover="color:#EE8B2B">About</a>
+      <a href="Contact v2.dc.html" style="color:#D6E1E5" style-hover="color:#EE8B2B">Contact</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px">
+      <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#FFFFFF;font-weight:700">Contact</span>
+      <a href="tel:+910000000000" style="color:#D6E1E5" style-hover="color:#EE8B2B">+91 00000 00000</a>
+      <a href="mailto:hello@royconsultancy.in" style="color:#D6E1E5" style-hover="color:#EE8B2B">hello@royconsultancy.in</a>
+      <span style="color:#D6E1E5">[Address line], [City]</span>
+    </div>
+  </div>
+  <div style="max-width:1240px;margin:0 auto;padding:24px 28px 36px;border-top:1px solid #2B5361;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;line-height:1.6">
+    <span style="white-space:nowrap">© 2026 Roy Consultancy</span>
+    <span style="max-width:640px">As per Bar Council of India rules, this website is for information only and does not constitute advertising or solicitation.</span>
+  </div>
+</footer>
+
+<sc-if value="{{ showWhatsApp }}" hint-placeholder-val="{{ true }}">
+  <a href="https://wa.me/910000000000" style="position:fixed;right:24px;bottom:24px;z-index:30;background:#EE8B2B;color:#FFFFFF;padding:14px 20px;border-radius:3px;font-size:14.5px;font-weight:700;white-space:nowrap;box-shadow:0 8px 24px rgba(22,62,74,0.25)" style-hover="background:#163E4A;color:#FFFFFF">WhatsApp us</a>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showRecentWork&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;showWhatsApp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;},&quot;highlightCard&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;min&quot;:0,&quot;max&quot;:5,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Practice areas&quot;}}">
+class Component extends DCLogic {
+  state = { w:1400, menu:false };
+  componentDidMount(){ this._rs=()=>this.setState({w:window.innerWidth}); window.addEventListener('resize',this._rs); this._rs(); }
+  componentWillUnmount(){ window.removeEventListener('resize',this._rs); }
+  renderVals(){
+    const s=this.state, hl=this.props.highlightCard ?? 2;
+    const base=[
+      {title:'Company & LLP incorporation', desc:'Private limited, OPC, LLP and Section 8 — name approval to certificate.', glyph:'¶'},
+      {title:'ROC annual compliance', desc:'AOC-4, MGT-7, DIR-3 KYC and LLP returns filed before the due date.', glyph:'§'},
+      {title:'GST registration & returns', desc:'Registration, monthly returns, ITC reconciliation and notice replies.', glyph:'%'},
+      {title:'Trademark registration', desc:'Search, filing, examination replies and hearings until registered.', glyph:'®'},
+      {title:'Business licences', desc:'MSME / Udyam, FSSAI, IEC and shop licence — before you start trading.', glyph:'✓'},
+      {title:'Agreements & drafting', desc:'Founders’, shareholders’ and service agreements drafted by an advocate.', glyph:'✎'},
+    ];
+    return {
+      wide:s.w>=820, narrow:s.w<820, menuOpen:s.w<820&&s.menu, menuLabel:s.menu?'Close':'Menu',
+      toggleMenu:()=>this.setState({menu:!s.menu}),
+      areas: base.map((a,i)=>({...a, badge:i===hl?'#EE8B2B':'#163E4A', linkColor:i===hl?'#EE8B2B':'#13303A'})),
+      work:[
+        {slot:'work-1', ph:'Photo — incorporation client', tag:'#Incorporation', title:'Pvt Ltd registered in 9 days', btn:'#163E4A'},
+        {slot:'work-2', ph:'Photo — GST matter', tag:'#GST notice', title:'Show-cause notice withdrawn', btn:'#EE8B2B'},
+        {slot:'work-3', ph:'Photo — trademark client', tag:'#Trademark', title:'Objection cleared, mark registered', btn:'#163E4A'},
+      ],
+      showWork:this.props.showRecentWork ?? true,
+      showWhatsApp:this.props.showWhatsApp ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>

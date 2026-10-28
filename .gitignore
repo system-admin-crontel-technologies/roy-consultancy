@@ -1,0 +1,22 @@
+node_modules/
+dist/
+.next/
+out/
+coverage/
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+# Prisma generated client
+apps/api/src/generated/
+# Android
+apps/android/.gradle/
+apps/android/build/
+apps/android/**/build/
+apps/android/local.properties
+apps/android/.idea/
+*.iml
+# docker volumes
+infra/docker/data/
+*.tsbuildinfo

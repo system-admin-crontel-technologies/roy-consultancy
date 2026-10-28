@@ -1,0 +1,41 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env: { POSTGRES_USER: roy, POSTGRES_PASSWORD: roy, POSTGRES_DB: roy_test }
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U roy" --health-interval 5s --health-timeout 3s --health-retries 10
+      valkey:
+        image: valkey/valkey:8-alpine
+        ports: ["6379:6379"]
+    env:
+      DATABASE_URL: postgresql://roy:roy@localhost:5432/roy_test?schema=public
+      REDIS_URL: redis://localhost:6379
+      JWT_ACCESS_SECRET: ci-only-secret-ci-only-secret-ci-only-secret
+      SEED_SUPER_ADMIN_EMAIL: admin@example.test
+      SEED_SUPER_ADMIN_PASSWORD: CiOnlyPassword123
+      SEED_DEMO_DATA: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9.12.0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @roy/types build
+      - run: pnpm --filter api prisma:generate
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm --filter api prisma:deploy
+      - run: pnpm --filter api prisma:seed
+      - run: pnpm --filter api test
+      - run: pnpm --filter api test:e2e
+      - run: pnpm --filter web build

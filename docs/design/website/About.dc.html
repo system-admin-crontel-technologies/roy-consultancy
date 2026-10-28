@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Roy Consultancy</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+body{margin:0;background:#F6F4EE;color:#1B2230;font-family:'IBM Plex Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#1B2230;text-decoration:none}
+a:hover{color:#8A6A2F}
+input,textarea,select,button{font-family:inherit}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#F6F4EE">
+
+<header style="position:sticky;top:0;z-index:20;background:rgba(246,244,238,0.94);backdrop-filter:blur(10px);border-bottom:1px solid #DEDACF">
+  <div style="max-width:1240px;margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="Home.dc.html" style="display:flex;align-items:center;gap:12px">
+      <span style="width:38px;height:38px;border:1.5px solid #1B2230;display:grid;place-items:center;font-family:'Newsreader',serif;font-size:20px;font-weight:500">R</span>
+      <span style="display:flex;flex-direction:column;line-height:1.1">
+        <span style="font-family:'Newsreader',serif;font-size:21px;font-weight:500;letter-spacing:-0.01em;white-space:nowrap">Roy Consultancy</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:#5C6270;white-space:nowrap">Advocate · Corporate &amp; Tax</span>
+      </span>
+    </a>
+    <nav style="display:flex;align-items:center;gap:30px;font-size:15px;white-space:nowrap">
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <a href="Home.dc.html" style="padding:4px 0;border-bottom:1.5px solid transparent">Home</a>
+      <a href="Services.dc.html" style="padding:4px 0;border-bottom:1.5px solid transparent">Services</a>
+      <a href="About.dc.html" style="font-weight:600;border-bottom:1.5px solid #8A6A2F;padding:4px 0">About</a>
+      <a href="Contact.dc.html" style="padding:4px 0;border-bottom:1.5px solid transparent">Contact</a>
+      </sc-if>
+      <a href="Contact.dc.html" style="background:#1B2230;color:#F6F4EE;padding:10px 18px;font-weight:500;white-space:nowrap" style-hover="background:#8A6A2F;color:#F6F4EE">Book a consultation</a>
+      <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" style="background:none;border:1px solid #1B2230;padding:9px 14px;font-size:14px;cursor:pointer;color:#1B2230">{{ menuLabel }}</button>
+      </sc-if>
+    </nav>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid #DEDACF;padding:8px 28px 18px;display:flex;flex-direction:column">
+      <a href="Home.dc.html" style="padding:14px 0;border-bottom:1px solid #DEDACF;font-size:18px;font-family:'Newsreader',serif">Home</a>
+      <a href="Services.dc.html" style="padding:14px 0;border-bottom:1px solid #DEDACF;font-size:18px;font-family:'Newsreader',serif">Services</a>
+      <a href="About.dc.html" style="padding:14px 0;border-bottom:1px solid #DEDACF;font-size:18px;font-family:'Newsreader',serif;color:#8A6A2F">About</a>
+      <a href="Contact.dc.html" style="padding:14px 0;border-bottom:1px solid #DEDACF;font-size:18px;font-family:'Newsreader',serif">Contact</a>
+    </div>
+  </sc-if>
+</header>
+
+<section style="border-bottom:1px solid #DEDACF">
+  <div style="max-width:1240px;margin:0 auto;padding:88px 28px 64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px 64px;align-items:end">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <span style="font-size:13.5px;color:#5C6270"><a href="Home.dc.html" style="color:#5C6270">Home</a> / About</span>
+      <h1 style="margin:0;font-family:'Newsreader',serif;font-weight:400;font-size:clamp(44px,6vw,84px);line-height:0.98;letter-spacing:-0.035em;text-wrap:balance">An advocate, not a filing agent.</h1>
+    </div>
+    <p style="margin:0;font-size:18px;line-height:1.65;color:#454B58;max-width:520px;text-wrap:pretty">Roy Consultancy brings legal training to everyday compliance, so your filings stand up if they are ever questioned.</p>
+  </div>
+</section>
+
+<section id="about" style="background:#EFECE4;border-top:1px solid #DEDACF;border-bottom:1px solid #DEDACF">
+  <div style="max-width:1240px;margin:0 auto;padding:110px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:64px;align-items:center">
+    <div style="aspect-ratio:1/1;max-height:520px;background:repeating-linear-gradient(135deg,#E6E1D5 0 10px,#DDD7C9 10px 20px);border:1px solid #D6D0C2;display:flex;align-items:flex-end;padding:20px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5C6270;background:#EFECE4;padding:6px 10px">office / chamber photo</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <blockquote style="margin:0;font-family:'Newsreader',serif;font-size:clamp(26px,2.8vw,36px);line-height:1.3;letter-spacing:-0.01em;text-wrap:pretty">“A filing is a legal document. It deserves the same care as a court pleading — because one day it may become one.”</blockquote>
+      <p style="margin:0;font-size:16px;line-height:1.7;color:#454B58;text-wrap:pretty">Roy Consultancy is led by Adv. [Name] Roy, an enrolled advocate advising startups, family businesses and growing companies on corporate law, indirect tax and intellectual property. Because the practice is run by an advocate, clients get more than form-filling — notices are answered, objections are argued, and agreements are drafted to hold up.</p>
+      <div style="display:flex;gap:40px;flex-wrap:wrap;padding-top:8px">
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5C6270">Enrolled with</span><span style="font-size:15.5px;font-weight:500">Bar Council of [State]</span></div>
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#5C6270">Office</span><span style="font-size:15.5px;font-weight:500">[City], India</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="border-top:1px solid #DEDACF;border-bottom:1px solid #DEDACF;background:#EFECE4">
+  <div style="max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))">
+    <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+      <div style="padding:30px 24px 30px 0;display:flex;flex-direction:column;gap:6px">
+        <span style="font-family:'Newsreader',serif;font-size:22px">{{ p.t }}</span>
+        <span style="font-size:14.5px;color:#5C6270;line-height:1.5">{{ p.d }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="process" style="background:#1B2230;color:#F6F4EE">
+  <div style="max-width:1240px;margin:0 auto;padding:110px 28px">
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:640px;margin-bottom:60px">
+      <h2 style="margin:0;font-family:'Newsreader',serif;font-weight:400;font-size:clamp(34px,4.4vw,56px);line-height:1.05;letter-spacing:-0.02em">Four steps. No surprises.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+        <div style="border-top:1px solid #3A4252;padding:28px 28px 0 0;display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:'Newsreader',serif;font-size:48px;color:#C9A866;line-height:1">{{ st.n }}</span>
+          <span style="font-size:19px;font-weight:500">{{ st.t }}</span>
+          <span style="font-size:15px;line-height:1.6;color:#B8BDC8">{{ st.d }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1240px;margin:0 auto;padding:100px 28px">
+  <div style="border-top:1px solid #1B2230;padding-top:48px;display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
+    <h2 style="margin:0;font-family:'Newsreader',serif;font-weight:400;font-size:clamp(34px,4.4vw,58px);line-height:1.05;letter-spacing:-0.02em;max-width:720px;text-wrap:balance">Not sure what you need? <span style="font-style:italic;color:#8A6A2F">A short call will tell you.</span></h2>
+    <a href="Contact.dc.html" style="background:#1B2230;color:#F6F4EE;padding:18px 30px;font-weight:500;font-size:15.5px;white-space:nowrap" style-hover="background:#8A6A2F;color:#F6F4EE">Book a consultation →</a>
+  </div>
+</section>
+
+<footer style="background:#141A25;color:#8E95A3">
+  <div style="max-width:1240px;margin:0 auto;padding:64px 28px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span style="font-family:'Newsreader',serif;font-size:24px;color:#F6F4EE">Roy Consultancy</span>
+      <span style="font-size:14px;line-height:1.6">Advocate-led corporate, tax and IP compliance.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Pages</span>
+      <a href="Home.dc.html" style="color:#D5D8DE" style-hover="color:#C9A866">Home</a>
+      <a href="Services.dc.html" style="color:#D5D8DE" style-hover="color:#C9A866">Services</a>
+      <a href="About.dc.html" style="color:#D5D8DE" style-hover="color:#C9A866">About</a>
+      <a href="Contact.dc.html" style="color:#D5D8DE" style-hover="color:#C9A866">Contact</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:14.5px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Contact</span>
+      <a href="tel:+910000000000" style="color:#D5D8DE" style-hover="color:#C9A866">+91 00000 00000</a>
+      <a href="mailto:hello@royconsultancy.in" style="color:#D5D8DE" style-hover="color:#C9A866">hello@royconsultancy.in</a>
+      <span style="color:#D5D8DE">[Address line], [City]</span>
+    </div>
+  </div>
+  <div style="max-width:1240px;margin:0 auto;padding:24px 28px 36px;border-top:1px solid #2A3140;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;line-height:1.6">
+    <span style="white-space:nowrap">© 2026 Roy Consultancy</span>
+    <span style="max-width:640px">As per Bar Council of India rules, this website is for information only and does not constitute advertising or solicitation.</span>
+  </div>
+</footer>
+
+<sc-if value="{{ showWhatsApp }}" hint-placeholder-val="{{ true }}">
+  <a href="https://wa.me/910000000000" style="position:fixed;right:24px;bottom:24px;z-index:30;background:#8A6A2F;color:#F6F4EE;padding:14px 20px;font-size:14.5px;font-weight:500;white-space:nowrap;box-shadow:0 8px 24px rgba(27,34,48,0.22)" style-hover="background:#1B2230;color:#F6F4EE">WhatsApp us</a>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showCalendar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showWhatsApp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const SERVICES = [
+  {cat:'Corporate', title:'Company & LLP incorporation', desc:'Private limited, OPC, LLP, Section 8 — name approval to certificate of incorporation.', items:['SPICe+ / FiLLiP filings','DSC & DIN','MOA, AOA & LLP agreement']},
+  {cat:'Corporate', title:'ROC annual compliance', desc:'Annual returns and statutory filings with the MCA, kept on schedule every year.', items:['AOC-4, MGT-7 / 7A','Form 11 & Form 8 for LLPs','DIR-3 KYC, ADT-1, INC-20A']},
+  {cat:'Corporate', title:'Corporate changes & secretarial', desc:'Events between annual filings — documented, resolved and filed correctly.', items:['Director & share changes','Registered office shift','Board minutes & registers']},
+  {cat:'Tax', title:'GST registration & returns', desc:'Registration, monthly and annual returns, reconciliation of input tax credit.', items:['GSTR-1, 3B, 9 & 9C','ITC reconciliation','LUT & refunds']},
+  {cat:'Tax', title:'GST notices & appeals', desc:'Replies to show-cause notices and representation before the department.', items:['SCN replies','Assessment & audit support','Appeals']},
+  {cat:'Tax', title:'Income tax & TDS', desc:'Returns for individuals, firms and companies, with quarterly TDS compliance.', items:['ITR filing','TDS returns','Notice responses']},
+  {cat:'IP', title:'Trademark registration', desc:'Search, filing and follow-through until your brand is registered.', items:['Availability search','TM-A filing','Examination reply & hearing']},
+  {cat:'IP', title:'Trademark opposition & renewal', desc:'Protect what you’ve built — oppose copycats, defend your mark, renew on time.', items:['Opposition & counter-statement','Renewal','Copyright registration']},
+  {cat:'Licences', title:'Business licences', desc:'The registrations a new business needs before it can trade.', items:['MSME / Udyam','FSSAI','IEC & shop licence']},
+  {cat:'Legal', title:'Agreements & drafting', desc:'Contracts drafted by an advocate, not filled from a template.', items:['Founders’ & shareholders’ agreements','NDAs & service contracts','Legal notices']},
+];
+const FAQS = [
+  {q:'How long does it take to register a private limited company?', a:'Typically 7–12 working days once documents are in order, depending on MCA processing and name approval.'},
+  {q:'What happens if annual ROC filings are missed?', a:'The MCA levies an additional fee for each day of delay, and prolonged default can lead to director disqualification. We can regularise past defaults.'},
+  {q:'Do I need GST registration?', a:'It is mandatory above the turnover threshold for your state and category, and in certain cases (inter-state supply, e-commerce sellers) regardless of turnover. We’ll confirm in a short call.'},
+  {q:'When can I use the ™ and ® symbols?', a:'™ can be used once your application is filed. ® may only be used after the mark is registered.'},
+  {q:'Do you offer annual retainers?', a:'Yes — a fixed yearly fee covering ROC, GST and income tax compliance, with reminders before each due date.'},
+];
+const DATES = [
+  {when:'11th', form:'GSTR-1', what:'Outward supplies — monthly filers', tag:'Monthly'},
+  {when:'20th', form:'GSTR-3B', what:'Summary return & tax payment', tag:'Monthly'},
+  {when:'31 Jul', form:'ITR', what:'Non-audit individuals & firms', tag:'Annual'},
+  {when:'30 Sep', form:'DIR-3 KYC', what:'KYC for every director with a DIN', tag:'Annual'},
+  {when:'AGM + 30', form:'AOC-4', what:'Financial statements to ROC', tag:'Annual'},
+  {when:'AGM + 60', form:'MGT-7 / 7A', what:'Annual return to ROC', tag:'Annual'},
+  {when:'31 Dec', form:'GSTR-9 / 9C', what:'GST annual return & reconciliation', tag:'Annual'},
+];
+const TABS = ['All','Corporate','Tax','IP','Licences','Legal'];
+const CHIPS = ['Incorporation','ROC filing','GST','Trademark','Income tax','Other'];
+
+class Component extends DCLogic {
+  componentDidMount(){ this._rs=()=>this.setState({w:window.innerWidth}); window.addEventListener('resize',this._rs); this._rs(); const q=new URLSearchParams(window.location.search).get('service'); if(q && CHIPS.includes(q)) this.setState({svc:q}); this._t=setInterval(()=>this.setState(s=>({wi:((s.wi||0)+1)%4})),2600); }
+  componentWillUnmount(){ window.removeEventListener('resize',this._rs); clearInterval(this._t); }
+  state = { w:1400, tab:'All', faq:0, name:'', phone:'', msg:'', svc:'ROC filing', sent:false, error:false };
+  renderVals() {
+    const s = this.state;
+    const tabStyle = on => ({padding:'9px 15px',fontSize:'13.5px',cursor:'pointer',border:'1px solid '+(on?'#1B2230':'#CFCABE'),background:on?'#1B2230':'transparent',color:on?'#F6F4EE':'#1B2230'});
+    const chipStyle = on => ({padding:'8px 12px',fontSize:'13.5px',cursor:'pointer',border:'1px solid '+(on?'#1B2230':'#CFCABE'),background:on?'#1B2230':'transparent',color:on?'#F6F4EE':'#1B2230'});
+    const list = SERVICES.map((x,i)=>({...x,num:String(i+1).padStart(2,'0')})).filter(x=>s.tab==='All'||x.cat===s.tab);
+    const goContact = svc => () => { window.location.href = 'Contact.dc.html?service=' + encodeURIComponent(svc); };
+    return {
+      intents:[
+        {t:'Start a company or LLP', d:'Pvt Ltd, OPC, LLP, Section 8', time:'7–12 days', go:goContact('Incorporation')},
+        {t:'Register or file GST', d:'Registration, monthly returns, notices', time:'3–7 days', go:goContact('GST')},
+        {t:'Register a trademark', d:'Search, application, objections', time:'Filed in 48 hrs', go:goContact('Trademark')},
+        {t:'Annual ROC filing', d:'AOC-4, MGT-7, DIR-3 KYC', time:'Before due date', go:goContact('ROC filing')},
+      ],
+      wide: s.w >= 820, narrow: s.w < 820, menuOpen: s.w < 820 && !!s.menu, menuLabel: s.menu ? 'Close' : 'Menu',
+      toggleMenu: () => this.setState({menu:!s.menu}),
+      featured: SERVICES.map((x,i)=>({...x,num:String(i+1).padStart(2,'0')})).filter((x,i)=>[0,1,3,5,6,9].includes(i)),
+      heroWord: ['registered.','compliant.','protected.','filed on time.'][s.wi||0],
+      pillars:[
+        {t:'Advocate-led', d:'Notices, objections and hearings handled in-house.'},
+        {t:'Fixed quotes', d:'Fees agreed before work begins. No hidden charges.'},
+        {t:'On-time filing', d:'Deadline tracking and reminders for every client.'},
+        {t:'Pan-India, online', d:'Documents shared digitally; meet in person or on call.'},
+      ],
+      tabs: TABS.map(t=>({label:t, style:tabStyle(t===s.tab), select:()=>this.setState({tab:t})})),
+      services: list,
+      steps:[
+        {n:'01', t:'Consultation', d:'A short call to understand your business and what needs to be filed.'},
+        {n:'02', t:'Checklist & quote', d:'A precise document list and a fixed fee, in writing.'},
+        {n:'03', t:'Drafting & filing', d:'We prepare, review and file — you approve before anything is submitted.'},
+        {n:'04', t:'Follow-through', d:'Acknowledgements, approvals and any queries handled until closure.'},
+      ],
+      dates: DATES,
+      showCalendar: this.props.showCalendar ?? true,
+      showWhatsApp: this.props.showWhatsApp ?? true,
+      faqs: FAQS.map((f,i)=>({...f, open:s.faq===i, sign:s.faq===i?'−':'+', toggle:()=>this.setState({faq:s.faq===i?-1:i})})),
+      serviceChips: CHIPS.map(c=>({label:c, style:chipStyle(c===s.svc), select:()=>this.setState({svc:c})})),
+      formName:s.name, formPhone:s.phone, formMsg:s.msg, formService:s.svc,
+      setName:e=>this.setState({name:e.target.value}),
+      setPhone:e=>this.setState({phone:e.target.value}),
+      setMsg:e=>this.setState({msg:e.target.value}),
+      error:s.error, sent:s.sent, notSent:!s.sent,
+      submit:()=>{ if(!s.name.trim()||!s.phone.trim()) return this.setState({error:true}); this.setState({sent:true,error:false}); },
+      reset:()=>this.setState({sent:false,name:'',phone:'',msg:''}),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+# Infrastructure only, for local development with `pnpm dev` running the apps on the host.
+name: roy-consultancy-dev
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT:-5440}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  valkey:
+    image: valkey/valkey:8-alpine
+    command: ["valkey-server", "--save", "60", "1", "--loglevel", "warning"]
+    ports:
+      - "${REDIS_PORT:-6390}:6379"
+    volumes:
+      - valkeydata:/data
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  rustfs:
+    # S3-compatible object storage for local development (MinIO images are no longer published publicly).
+    image: rustfs/rustfs:latest
+    environment:
+      RUSTFS_ACCESS_KEY: ${S3_ACCESS_KEY}
+      RUSTFS_SECRET_KEY: ${S3_SECRET_KEY}
+      RUSTFS_CONSOLE_ENABLE: "true"
+    ports:
+      - "${S3_PORT:-9010}:9000"
+      - "${S3_CONSOLE_PORT:-9011}:9001"
+    volumes:
+      - s3data:/data
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "${MAILPIT_UI_PORT:-8035}:8025"
+      - "${SMTP_PORT:-1035}:1025"
+
+  clamav:
+    image: clamav/clamav:stable
+    ports:
+      - "${CLAMAV_PORT:-3320}:3310"
+    volumes:
+      - clamdb:/var/lib/clamav
+
+volumes:
+  pgdata:
+  valkeydata:
+  s3data:
+  clamdb:
