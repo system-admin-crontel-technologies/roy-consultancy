@@ -35,8 +35,8 @@ COPY --from=build /repo/apps/api/dist ./apps/api/dist
 COPY --from=build /repo/apps/api/prisma ./apps/api/prisma
 COPY --from=build /repo/apps/api/prisma.config.ts ./apps/api/prisma.config.ts
 COPY --from=build /repo/apps/api/src/generated ./apps/api/src/generated
-COPY infra/docker/api-entrypoint.sh /usr/local/bin/api-entrypoint
-RUN chmod +x /usr/local/bin/api-entrypoint && chown -R app:app /repo
+COPY --chmod=755 infra/docker/api-entrypoint.sh /usr/local/bin/api-entrypoint
+RUN chown -R app:app /repo
 USER app
 WORKDIR /repo/apps/api
 EXPOSE 4000
