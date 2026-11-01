@@ -71,7 +71,8 @@ export const HIGHLIGHTED_AREA = 2;
 /** Client feedback for the home page. SAMPLE TEXT for layout only: replace with real, client-approved quotes before relying on it. */
 export interface Testimonial {
   quote: string;
-  name: string;
+  /** Client's name, once a real client agrees to be quoted. */
+  name?: string;
   business: string;
   tag: string;
 }
@@ -79,19 +80,16 @@ export interface Testimonial {
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote: 'We sent our documents on a Monday and had the certificate of incorporation within two weeks. Every step was explained in writing, and the fee never changed from the quote.',
-    name: '[Sample client]',
     business: 'Founder, tech startup, Kolkata',
     tag: '#Incorporation',
   },
   {
     quote: 'A GST show-cause notice had us worried. Mr Roy drafted a detailed reply, attended the hearing himself and the demand was dropped.',
-    name: '[Sample client]',
     business: 'Partner, trading firm, North 24 Parganas',
     tag: '#GST',
   },
   {
     quote: 'Our trademark got an objection we did not understand. The reply was filed well before the deadline and the mark is now registered.',
-    name: '[Sample client]',
     business: 'Owner, family business, Shyamnagar',
     tag: '#Trademark',
   },

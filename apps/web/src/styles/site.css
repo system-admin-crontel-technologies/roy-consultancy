@@ -770,6 +770,11 @@ button {
   color: var(--s-orange);
 }
 
+.s-testimonials__note {
+  margin: -8px 0 0;
+  font-size: 13.5px;
+  color: var(--s-muted);
+}
 .s-testimonial {
   margin: 0;
   background: #ffffff;

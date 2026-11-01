@@ -108,6 +108,7 @@ export default function HomePage() {
           <h2 id="testimonials-title" className="s-h2 s-h2--center">
             What Our Clients Say
           </h2>
+          {TESTIMONIALS.some((t) => !t.name) ? <p className="s-testimonials__note">Illustrative examples of the matters we handle.</p> : null}
           <div className="s-grid">
             {TESTIMONIALS.map((t, i) => (
               <figure key={i} className="s-testimonial">
@@ -116,8 +117,8 @@ export default function HomePage() {
                 </span>
                 <blockquote className="s-testimonial__quote">{t.quote}</blockquote>
                 <figcaption className="s-testimonial__by">
-                  <span className="s-testimonial__name">{t.name}</span>
-                  <span className="s-testimonial__business">{t.business}</span>
+                  {t.name ? <span className="s-testimonial__name">{t.name}</span> : null}
+                  <span className={t.name ? "s-testimonial__business" : "s-testimonial__name"}>{t.business}</span>
                   <span className="s-work__tag">{t.tag}</span>
                 </figcaption>
               </figure>
