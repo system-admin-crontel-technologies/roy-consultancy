@@ -272,12 +272,27 @@ button {
   height: 44px;
   border: 1.5px solid #ffffff;
   border-radius: 4px 4px 20px 20px;
-  display: grid;
-  place-items: center;
+  position: relative;
+  overflow: hidden;
+  flex: none;
   font-family: var(--s-serif);
-  font-size: 16px;
+  font-size: 27px;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  line-height: 1;
+}
+/* Monogram: R sits high-left, the orange C low-right, overlapping it. */
+.s-brand__r,
+.s-brand__c {
+  position: absolute;
+}
+.s-brand__r {
+  left: 5px;
+  top: 3px;
+}
+.s-brand__c {
+  left: 15px;
+  top: 13px;
+  color: var(--s-orange);
 }
 .s-brand__text {
   display: flex;
