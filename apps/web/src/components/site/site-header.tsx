@@ -10,7 +10,7 @@ export function SiteHeader() {
       <header className="s-container s-header__bar">
         <Link href="/" className="s-brand" aria-label={`${SITE.name} home`}>
           <span className="s-brand__mark" aria-hidden>
-            R
+            RC
           </span>
           <span className="s-brand__text">
             <span className="s-brand__name">{SITE.name}</span>

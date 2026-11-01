@@ -275,8 +275,9 @@ button {
   display: grid;
   place-items: center;
   font-family: var(--s-serif);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
+  letter-spacing: 0.02em;
 }
 .s-brand__text {
   display: flex;
