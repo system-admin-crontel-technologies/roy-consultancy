@@ -337,6 +337,20 @@ button {
 .s-menu__phone svg {
   color: var(--s-orange);
 }
+.s-nav__phones {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.s-nav__phones .s-nav__phone {
+  font-size: 13.5px;
+}
+.s-nav__phone-city {
+  min-width: 74px;
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--s-on-dark-muted);
+}
 .s-nav__toggle {
   display: none;
   background: none;

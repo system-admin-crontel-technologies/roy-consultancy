@@ -11,13 +11,21 @@ function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 }
 
+/** First number of each office, labelled with the office's city. */
+const OFFICE_PHONES = SITE.offices.map((o) => ({ city: o.city, ...o.phones[0] }));
+
 function NavActions() {
   return (
     <div className="s-nav__actions">
-      <a href={SITE.phoneHref} className="s-nav__phone">
-        <PhoneIcon />
-        {SITE.phoneDisplay}
-      </a>
+      <div className="s-nav__phones">
+        {OFFICE_PHONES.map((p) => (
+          <a key={p.city} href={p.href} className="s-nav__phone">
+            <PhoneIcon />
+            <span className="s-nav__phone-city">{p.city}</span>
+            {p.display}
+          </a>
+        ))}
+      </div>
       <Link href="/contact" className="s-btn">
         Get a quote
       </Link>
@@ -52,10 +60,13 @@ export function SiteNav() {
             {l.label}
           </Link>
         ))}
-        <a href={SITE.phoneHref} className="s-menu__phone">
-          <PhoneIcon />
-          {SITE.phoneDisplay}
-        </a>
+        {OFFICE_PHONES.map((p) => (
+          <a key={p.city} href={p.href} className="s-menu__phone">
+            <PhoneIcon />
+            <span className="s-nav__phone-city">{p.city}</span>
+            {p.display}
+          </a>
+        ))}
       </div>
     </>
   );

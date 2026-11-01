@@ -20,7 +20,6 @@ export function SiteFooter() {
         </div>
         <div className="s-footer__col">
           <span className="s-footer__label">Contact</span>
-          <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a>
           <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
           {SITE.offices.map((o) => (
             <span key={o.name} className="s-footer__plain">
