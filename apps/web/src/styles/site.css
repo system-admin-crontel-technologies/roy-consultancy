@@ -1294,3 +1294,9 @@ a.s-method:hover {
   background: var(--s-teal);
   color: #ffffff;
 }
+/* Mobile only: same breakpoint where the nav collapses into the Menu toggle. */
+@media (min-width: 820px) {
+  .s-whatsapp {
+    display: none;
+  }
+}
