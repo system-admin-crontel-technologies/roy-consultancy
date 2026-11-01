@@ -33,11 +33,11 @@ export default function ContactPage() {
             </h2>
             <p className="s-body">We reply within one working day with the documents required and a fixed quote.</p>
             <div className="s-methods">
-              <a href={SITE.phoneHref} className="s-method">
+              <a href={SITE.phoneHref} className="s-method s-method--call">
                 <span className="s-method__label">Call</span>
                 <span className="s-method__value">{SITE.phoneDisplay}</span>
               </a>
-              <a href={SITE.whatsappHref} className="s-method" target="_blank" rel="noopener noreferrer">
+              <a href={SITE.whatsappHref} className="s-method s-method--whatsapp" target="_blank" rel="noopener noreferrer">
                 <span className="s-method__label">WhatsApp</span>
                 <span className="s-method__value">{SITE.whatsappDisplay}</span>
                 <span className="s-method__note">Message us ↗</span>
