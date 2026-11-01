@@ -8,7 +8,7 @@ const env = (key: string, fallback: string) => {
   return v && v.trim() ? v.trim() : fallback;
 };
 
-const whatsappDigits = env('NEXT_PUBLIC_WHATSAPP_NUMBER', '910000000000').replace(/\D/g, '');
+const whatsappDigits = env('NEXT_PUBLIC_WHATSAPP_NUMBER', '919051637505').replace(/\D/g, '');
 const phoneDigits = env('NEXT_PUBLIC_CONTACT_PHONE', '+910000000000').replace(/[^\d+]/g, '');
 
 function displayPhone(raw: string): string {
