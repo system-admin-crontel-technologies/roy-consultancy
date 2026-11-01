@@ -12,7 +12,7 @@ import { Table, TH, THead, TR } from "@/components/ui/table";
 
 export const metadata = { title: "Website enquiries" };
 
-const SERVICES = ["Incorporation", "ROC filing", "GST", "Trademark", "Income tax", "Other"];
+const SERVICES = ["Incorporation", "ROC filing", "GST", "Trademark", "Income tax", "NGO registration", "Other"];
 
 export default function EnquiriesPage(props: PageWithSearch) {
   return (

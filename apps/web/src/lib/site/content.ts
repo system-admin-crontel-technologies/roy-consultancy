@@ -3,7 +3,7 @@
  * (docs/design/website, v2). Keep text changes here so pages stay purely presentational.
  */
 
-export type ServiceCategory = 'Corporate' | 'Tax' | 'IP' | 'Licences' | 'Legal';
+export type ServiceCategory = 'Corporate' | 'Tax' | 'IP' | 'Licences' | 'NGO' | 'Legal';
 
 export interface SiteService {
   num: string;
@@ -23,16 +23,18 @@ const RAW_SERVICES: Omit<SiteService, 'num'>[] = [
   { cat: 'IP', title: 'Trademark registration', desc: 'Search, filing and follow-through until your brand is registered.', items: ['Availability search', 'TM-A filing', 'Examination reply & hearing'] },
   { cat: 'IP', title: 'Trademark opposition & renewal', desc: 'Protect what you’ve built — oppose copycats, defend your mark, renew on time.', items: ['Opposition & counter-statement', 'Renewal', 'Copyright registration'] },
   { cat: 'Licences', title: 'Business licences', desc: 'The registrations a new business needs before it can trade.', items: ['MSME / Udyam', 'FSSAI', 'IEC & shop licence'] },
+  { cat: 'NGO', title: 'NGO registration', desc: 'Setting up a non-profit and the registrations it needs to receive donations and CSR funds.', items: ['Society registration & renewal', 'Trust registration', 'Trustee registration & changes', 'NGO formation', 'NGO Darpan registration', '12A & 80G registration', 'CSR registration (CSR-1)'] },
+  { cat: 'Legal', title: 'Flat & property registration', desc: 'Registration of flats and property, with the deeds drafted and checked by an advocate.', items: ['Flat registration', 'Sale deed & agreement for sale'] },
   { cat: 'Legal', title: 'Agreements & drafting', desc: 'Contracts drafted by an advocate, not filled from a template.', items: ['Founders’ & shareholders’ agreements', 'NDAs & service contracts', 'Legal notices'] },
 ];
 
 export const SERVICES: SiteService[] = RAW_SERVICES.map((s, i) => ({ ...s, num: String(i + 1).padStart(2, '0') }));
 
-export const TABS = ['All', 'Corporate', 'Tax', 'IP', 'Licences', 'Legal'] as const;
+export const TABS = ['All', 'Corporate', 'Tax', 'IP', 'Licences', 'NGO', 'Legal'] as const;
 export type Tab = (typeof TABS)[number];
 
 /** Must match ENQUIRY_SERVICES in apps/api/src/enquiries/enquiries.schemas.ts. */
-export const CHIPS = ['Incorporation', 'ROC filing', 'GST', 'Trademark', 'Income tax', 'Other'] as const;
+export const CHIPS = ['Incorporation', 'ROC filing', 'GST', 'Trademark', 'Income tax', 'NGO registration', 'Other'] as const;
 export type Chip = (typeof CHIPS)[number];
 export const DEFAULT_CHIP: Chip = 'ROC filing';
 

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { paginationSchema } from '../common/utils/pagination.js';
 
 /** Service chips offered on the public contact form. Keep in sync with apps/web site content. */
-export const ENQUIRY_SERVICES = ['Incorporation', 'ROC filing', 'GST', 'Trademark', 'Income tax', 'Other'] as const;
+export const ENQUIRY_SERVICES = ['Incorporation', 'ROC filing', 'GST', 'Trademark', 'Income tax', 'NGO registration', 'Other'] as const;
 
 /** Indian mobile numbers: optional +91 / 0 prefix, then 10 digits starting 6-9. Spaces and dashes tolerated. */
 export const INDIAN_PHONE_RE = /^(?:\+?91[\s-]?|0)?[6-9]\d{9}$/;
