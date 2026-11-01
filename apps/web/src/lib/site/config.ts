@@ -18,6 +18,8 @@ function displayPhone(raw: string): string {
   return raw;
 }
 
+type OfficePhone = { display: string; href?: string };
+
 export const SITE = {
   name: 'Roy Consultancy',
   tagline: 'advocate · corporate & tax',
@@ -32,15 +34,18 @@ export const SITE = {
       name: 'Shyamnagar office',
       city: 'Shyamnagar',
       address: '38/8, Basudebpur Road, Adrija Complex, PO Shyamnagar, North 24 Parganas 743127',
-      phoneHref: 'tel:+919051637505',
-      phoneDisplay: '+91 90516 37505',
+      phones: [{ display: '+91 90516 37505', href: 'tel:+919051637505' }],
     },
     {
       name: 'Kolkata office',
       city: 'Kolkata',
       address: 'Room No. 2, Ground Floor, 1/1A, Vanisittat Road, Kolkata, West Bengal 700001',
+      phones: [
+        { display: '+91 76058 62462', href: 'tel:+917605862462' },
+        { display: '+91 90739 71275', href: 'tel:+919073971275' },
+      ],
     },
-  ],
+  ] as { name: string; city: string; address: string; phones: OfficePhone[] }[],
   hours: env('NEXT_PUBLIC_OFFICE_HOURS', 'Mon–Sat, 10–7'),
   advocateName: env('NEXT_PUBLIC_ADVOCATE_NAME', 'Adv. Ranjan Roy'),
   barCouncil: env('NEXT_PUBLIC_BAR_COUNCIL', 'Bar Council of West Bengal'),

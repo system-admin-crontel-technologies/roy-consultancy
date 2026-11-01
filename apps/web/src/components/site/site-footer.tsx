@@ -25,12 +25,12 @@ export function SiteFooter() {
           {SITE.offices.map((o) => (
             <span key={o.name} className="s-footer__plain">
               <strong>{o.name}:</strong> {o.address}
-              {"phoneHref" in o && (
-                <>
+              {o.phones.map((ph) => (
+                <span key={ph.display}>
                   {" · "}
-                  <a href={o.phoneHref}>{o.phoneDisplay}</a>
-                </>
-              )}
+                  {ph.href ? <a href={ph.href}>{ph.display}</a> : ph.display}
+                </span>
+              ))}
             </span>
           ))}
         </div>

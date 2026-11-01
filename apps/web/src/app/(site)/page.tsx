@@ -63,7 +63,7 @@ export default function HomePage() {
           <p className="s-body">A filing is a legal document. Roy Consultancy brings legal training to everyday compliance — incorporation, ROC returns, GST and trademarks — so your paperwork stands up if it is ever questioned.</p>
           <p className="s-body">Every engagement starts with a written checklist and a fixed quote. Notices, objections and hearings are handled in-house, not passed on.</p>
           <dl className="s-stats">
-            {[STATS.years, STATS.filings, STATS.rating].map((s) => (
+            {[STATS.years, STATS.filings].map((s) => (
               <div key={s.label} className="s-stat">
                 <dt className="s-stat__label">{s.label}</dt>
                 <dd className="s-stat__value">{s.value}</dd>

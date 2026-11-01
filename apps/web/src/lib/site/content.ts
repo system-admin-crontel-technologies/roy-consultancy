@@ -48,7 +48,6 @@ export const STATS = {
   filings: { value: '500+', label: 'Filings completed' },
   onTime: { value: '98%', label: 'Filed before due date' },
   years: { value: '21+', label: 'Years in practice' },
-  rating: { value: '4.9', label: 'Google rating' },
 } as const;
 
 export interface PracticeArea {
