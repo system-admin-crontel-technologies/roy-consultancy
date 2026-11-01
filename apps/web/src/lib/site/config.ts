@@ -27,7 +27,8 @@ export const SITE = {
   url: env('NEXT_PUBLIC_SITE_URL', 'http://localhost:3000'),
   phoneHref: `tel:${phoneDigits.startsWith('+') ? phoneDigits : `+${phoneDigits}`}`,
   phoneDisplay: displayPhone(phoneDigits),
-  whatsappHref: `https://wa.me/${whatsappDigits}`,
+  whatsappHref: `https://wa.me/${whatsappDigits}?text=${encodeURIComponent('Hello Roy Consultancy, I would like to enquire about your services.')}`,
+  whatsappDisplay: displayPhone(whatsappDigits),
   email: env('NEXT_PUBLIC_CONTACT_EMAIL', 'hello@royconsultancy.in'),
   offices: [
     {

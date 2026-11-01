@@ -39,9 +39,10 @@ export default function ContactPage() {
               </a>
               <a href={SITE.whatsappHref} className="s-method" target="_blank" rel="noopener noreferrer">
                 <span className="s-method__label">WhatsApp</span>
-                <span className="s-method__value">Message us ↗</span>
+                <span className="s-method__value">{SITE.whatsappDisplay}</span>
+                <span className="s-method__note">Message us ↗</span>
               </a>
-              <a href={`mailto:${SITE.email}`} className="s-method">
+              <a href={`mailto:${SITE.email}`} className="s-method s-method--wide">
                 <span className="s-method__label">Email</span>
                 <span className="s-method__value">{SITE.email}</span>
               </a>

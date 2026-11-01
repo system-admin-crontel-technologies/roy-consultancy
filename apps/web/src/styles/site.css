@@ -1038,6 +1038,10 @@ button {
   color: var(--s-ink);
   min-width: 0;
 }
+/* Full-row card, so a short card is never stretched to match a tall office card beside it. */
+.s-method--wide {
+  grid-column: 1 / -1;
+}
 a.s-method:hover {
   color: var(--s-ink);
   box-shadow: var(--s-shadow-card);
