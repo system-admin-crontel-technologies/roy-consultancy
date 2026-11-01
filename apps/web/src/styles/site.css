@@ -1195,8 +1195,16 @@ a.s-method:hover {
   font-size: 13px;
   line-height: 1.6;
 }
+.s-footer__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .s-footer__copy {
   white-space: nowrap;
+}
+.s-footer__credit {
+  opacity: 0.75;
 }
 .s-footer__disclaimer {
   max-width: 640px;

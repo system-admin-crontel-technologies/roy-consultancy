@@ -27,8 +27,18 @@ export const SITE = {
   phoneDisplay: displayPhone(phoneDigits),
   whatsappHref: `https://wa.me/${whatsappDigits}`,
   email: env('NEXT_PUBLIC_CONTACT_EMAIL', 'hello@royconsultancy.in'),
-  addressLine: env('NEXT_PUBLIC_OFFICE_ADDRESS', '[Address line]'),
-  city: env('NEXT_PUBLIC_OFFICE_CITY', '[City]'),
+  offices: [
+    {
+      name: 'Shyamnagar office',
+      city: 'Shyamnagar',
+      address: '38/8, Basudebpur Road, Adrija Complex, PO Shyamnagar, North 24 Parganas 743127',
+    },
+    {
+      name: 'Kolkata office',
+      city: 'Kolkata',
+      address: 'Room No. 2, Ground Floor, 1/1A, Vanisittat Road, Kolkata, West Bengal 700001',
+    },
+  ],
   hours: env('NEXT_PUBLIC_OFFICE_HOURS', 'Mon–Sat, 10–7'),
   advocateName: env('NEXT_PUBLIC_ADVOCATE_NAME', 'Adv. [Name] Roy'),
   barCouncil: env('NEXT_PUBLIC_BAR_COUNCIL', 'Bar Council of [State]'),

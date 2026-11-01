@@ -37,8 +37,8 @@ export default function AboutPage() {
               <dd className="s-fact__value">{SITE.barCouncil}</dd>
             </div>
             <div className="s-fact">
-              <dt className="s-fact__label">Office</dt>
-              <dd className="s-fact__value">{SITE.city}, India</dd>
+              <dt className="s-fact__label">Offices</dt>
+              <dd className="s-fact__value">{SITE.offices.map((o) => o.city).join(" & ")}, India</dd>
             </div>
           </dl>
           <Link href="/contact" className="s-btn s-btn--start">

@@ -45,13 +45,13 @@ export default function ContactPage() {
                 <span className="s-method__label">Email</span>
                 <span className="s-method__value">{SITE.email}</span>
               </a>
-              <div className="s-method">
-                <span className="s-method__label">Office</span>
-                <span className="s-method__value">
-                  {SITE.addressLine}, {SITE.city}
-                </span>
-                <span className="s-method__note">{SITE.hours}</span>
-              </div>
+              {SITE.offices.map((o) => (
+                <div key={o.name} className="s-method">
+                  <span className="s-method__label">{o.name}</span>
+                  <span className="s-method__value">{o.address}</span>
+                  <span className="s-method__note">{SITE.hours}</span>
+                </div>
+              ))}
             </div>
           </div>
           <Suspense fallback={<div className="s-form" aria-busy><h3 className="s-form__title">Send an enquiry</h3></div>}>
