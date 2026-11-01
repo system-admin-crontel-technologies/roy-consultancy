@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE } from "@/lib/site/config";
-import { HIGHLIGHTED_AREA, PRACTICE_AREAS, RECENT_MATTERS, STATS } from "@/lib/site/content";
+import { HIGHLIGHTED_AREA, PRACTICE_AREAS, STATS, TESTIMONIALS } from "@/lib/site/content";
 import { Photo } from "@/components/site/photo";
+import { ProcessSteps } from "@/components/site/process-steps";
 import { SectionTag } from "@/components/site/section-tag";
 
 export const metadata: Metadata = { title: { absolute: `Home — ${SITE.name}` } };
@@ -99,28 +100,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {SITE.showRecentWork ? (
-        <section className="s-container s-section s-section--center" aria-labelledby="work-title">
-          <SectionTag>Recent matters</SectionTag>
-          <h2 id="work-title" className="s-h2 s-h2--center">
-            How We Have Helped Businesses Like Yours
+      <ProcessSteps />
+
+      {SITE.showTestimonials ? (
+        <section className="s-container s-section s-section--center" aria-labelledby="testimonials-title">
+          <SectionTag>Client feedback</SectionTag>
+          <h2 id="testimonials-title" className="s-h2 s-h2--center">
+            What Our Clients Say
           </h2>
           <div className="s-grid">
-            {RECENT_MATTERS.map((w) => (
-              <article key={w.title} className="s-work">
-                <div className="s-work__photo">
-                  <Photo src={SITE.photos[w.photo]} alt={w.title} label={w.photoLabel} />
-                </div>
-                <div className="s-work__body">
-                  <div className="s-work__text">
-                    <span className="s-work__tag">{w.tag}</span>
-                    <h3 className="s-work__title">{w.title}</h3>
-                  </div>
-                  <Link href="/contact" className="s-work__go" data-accent={w.accent ? "true" : undefined} aria-label={`Discuss a matter like “${w.title}”`}>
-                    ↗
-                  </Link>
-                </div>
-              </article>
+            {TESTIMONIALS.map((t, i) => (
+              <figure key={i} className="s-testimonial">
+                <span className="s-testimonial__mark" aria-hidden>
+                  “
+                </span>
+                <blockquote className="s-testimonial__quote">{t.quote}</blockquote>
+                <figcaption className="s-testimonial__by">
+                  <span className="s-testimonial__name">{t.name}</span>
+                  <span className="s-testimonial__business">{t.business}</span>
+                  <span className="s-work__tag">{t.tag}</span>
+                </figcaption>
+              </figure>
             ))}
           </div>
           <Link href="/contact" className="s-btn s-section__cta">

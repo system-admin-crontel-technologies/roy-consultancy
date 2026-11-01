@@ -69,18 +69,18 @@ export const PRACTICE_AREAS: PracticeArea[] = [
 /** Index into PRACTICE_AREAS drawn in the accent colour on the home page. */
 export const HIGHLIGHTED_AREA = 2;
 
-export interface RecentMatter {
-  photo: 'work1' | 'work2' | 'work3';
-  photoLabel: string;
+/** Client feedback for the home page. Bracketed values are placeholders until the client supplies real quotes. */
+export interface Testimonial {
+  quote: string;
+  name: string;
+  business: string;
   tag: string;
-  title: string;
-  accent: boolean;
 }
 
-export const RECENT_MATTERS: RecentMatter[] = [
-  { photo: 'work1', photoLabel: 'Photo — incorporation client', tag: '#Incorporation', title: 'Pvt Ltd registered in 9 days', accent: false },
-  { photo: 'work2', photoLabel: 'Photo — GST matter', tag: '#GST notice', title: 'Show-cause notice withdrawn', accent: true },
-  { photo: 'work3', photoLabel: 'Photo — trademark client', tag: '#Trademark', title: 'Objection cleared, mark registered', accent: false },
+export const TESTIMONIALS: Testimonial[] = [
+  { quote: '[Client feedback about company registration with Roy Consultancy.]', name: '[Client name]', business: '[Business name, city]', tag: '#Incorporation' },
+  { quote: '[Client feedback about a GST notice or return handled by Roy Consultancy.]', name: '[Client name]', business: '[Business name, city]', tag: '#GST' },
+  { quote: '[Client feedback about a trademark registration or objection.]', name: '[Client name]', business: '[Business name, city]', tag: '#Trademark' },
 ];
 
 export const PILLARS = [

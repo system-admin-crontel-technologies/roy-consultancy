@@ -46,15 +46,12 @@ export const SITE = {
   barCouncil: env('NEXT_PUBLIC_BAR_COUNCIL', 'Bar Council of West Bengal'),
   showWhatsApp: env('NEXT_PUBLIC_SHOW_WHATSAPP', 'true') !== 'false',
   showCalendar: env('NEXT_PUBLIC_SHOW_CALENDAR', 'true') !== 'false',
-  showRecentWork: env('NEXT_PUBLIC_SHOW_RECENT_WORK', 'true') !== 'false',
+  showTestimonials: env('NEXT_PUBLIC_SHOW_TESTIMONIALS', 'true') !== 'false',
   /** Photo paths (e.g. "/images/hero.jpg" in apps/web/public). Empty shows the design's labelled placeholder. */
   photos: {
-    hero: process.env.NEXT_PUBLIC_HERO_PHOTO?.trim() || undefined,
+    hero: process.env.NEXT_PUBLIC_HERO_PHOTO?.trim() || '/images/hero-ranjan-roy.jpg',
     consultation: process.env.NEXT_PUBLIC_CONSULTATION_PHOTO?.trim() || undefined,
-    profile: process.env.NEXT_PUBLIC_PROFILE_PHOTO?.trim() || undefined,
-    work1: process.env.NEXT_PUBLIC_WORK_PHOTO_1?.trim() || undefined,
-    work2: process.env.NEXT_PUBLIC_WORK_PHOTO_2?.trim() || undefined,
-    work3: process.env.NEXT_PUBLIC_WORK_PHOTO_3?.trim() || undefined,
+    profile: process.env.NEXT_PUBLIC_PROFILE_PHOTO?.trim() || '/images/advocate-ranjan-roy.jpg',
   },
   copyrightYear: '2026',
   disclaimer: 'As per Bar Council of India rules, this website is for information only and does not constitute advertising or solicitation.',
