@@ -49,6 +49,11 @@ export default function ContactPage() {
                 <div key={o.name} className="s-method">
                   <span className="s-method__label">{o.name}</span>
                   <span className="s-method__value">{o.address}</span>
+                  {"phoneHref" in o && (
+                    <a href={o.phoneHref} className="s-method__note">
+                      {o.phoneDisplay}
+                    </a>
+                  )}
                   <span className="s-method__note">{SITE.hours}</span>
                 </div>
               ))}

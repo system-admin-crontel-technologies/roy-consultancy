@@ -9,7 +9,7 @@ const env = (key: string, fallback: string) => {
 };
 
 const whatsappDigits = env('NEXT_PUBLIC_WHATSAPP_NUMBER', '919051637505').replace(/\D/g, '');
-const phoneDigits = env('NEXT_PUBLIC_CONTACT_PHONE', '+910000000000').replace(/[^\d+]/g, '');
+const phoneDigits = env('NEXT_PUBLIC_CONTACT_PHONE', '+919051637505').replace(/[^\d+]/g, '');
 
 function displayPhone(raw: string): string {
   const digits = raw.replace(/\D/g, '');
@@ -32,6 +32,8 @@ export const SITE = {
       name: 'Shyamnagar office',
       city: 'Shyamnagar',
       address: '38/8, Basudebpur Road, Adrija Complex, PO Shyamnagar, North 24 Parganas 743127',
+      phoneHref: 'tel:+919051637505',
+      phoneDisplay: '+91 90516 37505',
     },
     {
       name: 'Kolkata office',
@@ -40,8 +42,8 @@ export const SITE = {
     },
   ],
   hours: env('NEXT_PUBLIC_OFFICE_HOURS', 'Mon–Sat, 10–7'),
-  advocateName: env('NEXT_PUBLIC_ADVOCATE_NAME', 'Adv. [Name] Roy'),
-  barCouncil: env('NEXT_PUBLIC_BAR_COUNCIL', 'Bar Council of [State]'),
+  advocateName: env('NEXT_PUBLIC_ADVOCATE_NAME', 'Adv. Ranjan Roy'),
+  barCouncil: env('NEXT_PUBLIC_BAR_COUNCIL', 'Bar Council of West Bengal'),
   showWhatsApp: env('NEXT_PUBLIC_SHOW_WHATSAPP', 'true') !== 'false',
   showCalendar: env('NEXT_PUBLIC_SHOW_CALENDAR', 'true') !== 'false',
   showRecentWork: env('NEXT_PUBLIC_SHOW_RECENT_WORK', 'true') !== 'false',
