@@ -1042,13 +1042,15 @@ button {
 .s-method--wide {
   grid-column: 1 / -1;
 }
-/* WhatsApp card is mobile only (same breakpoint as the floating button); Call then takes the full row. */
+/* Same breakpoint as the floating WhatsApp button and the collapsed nav. */
 @media (min-width: 820px) {
-  .s-method--whatsapp {
+  .s-mobile-only {
     display: none;
   }
-  .s-method--call {
-    grid-column: 1 / -1;
+}
+@media (max-width: 819.98px) {
+  .s-desktop-only {
+    display: none;
   }
 }
 a.s-method:hover {
