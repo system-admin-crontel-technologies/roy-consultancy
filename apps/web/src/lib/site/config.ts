@@ -50,7 +50,7 @@ export const SITE = {
   /** Photo paths (e.g. "/images/hero.jpg" in apps/web/public). Empty shows the design's labelled placeholder. */
   photos: {
     hero: process.env.NEXT_PUBLIC_HERO_PHOTO?.trim() || '/images/hero-ranjan-roy.jpg',
-    consultation: process.env.NEXT_PUBLIC_CONSULTATION_PHOTO?.trim() || undefined,
+    consultation: process.env.NEXT_PUBLIC_CONSULTATION_PHOTO?.trim() || '/images/consultation.jpg',
     profile: process.env.NEXT_PUBLIC_PROFILE_PHOTO?.trim() || '/images/advocate-ranjan-roy.jpg',
   },
   copyrightYear: '2026',
