@@ -938,6 +938,10 @@ button {
   white-space: nowrap;
 }
 
+/* Lighter teal than .s-dark so the band stands apart from the dark sections and footer around it. */
+.s-cta {
+  background: var(--s-teal-2);
+}
 .s-cta__inner {
   padding-top: 72px;
   padding-bottom: 72px;
