@@ -280,7 +280,7 @@ button {
   font-weight: 600;
   line-height: 1;
 }
-/* Monogram: R sits high-left, the orange C low-right, overlapping it. */
+/* Monogram: R sits high-left, in front of the orange C low-right. */
 .s-brand__r,
 .s-brand__c {
   position: absolute;
@@ -288,6 +288,7 @@ button {
 .s-brand__r {
   left: 5px;
   top: 3px;
+  z-index: 1;
 }
 .s-brand__c {
   left: 15px;
