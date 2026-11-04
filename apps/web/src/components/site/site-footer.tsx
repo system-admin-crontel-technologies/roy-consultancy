@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site/config";
 import { NAV_LINKS } from "@/lib/site/content";
+import { LEGAL_LINKS } from "@/lib/site/legal";
 
 export function SiteFooter() {
   return (
@@ -41,6 +42,13 @@ export function SiteFooter() {
           </span>
           <span className="s-footer__credit">
             Developed by Crontel Technology Pvt Ltd
+          </span>
+          <span className="s-footer__legal">
+            {LEGAL_LINKS.map((l) => (
+              <Link key={l.href} href={l.href}>
+                {l.label}
+              </Link>
+            ))}
           </span>
         </div>
         <span className="s-footer__disclaimer">{SITE.disclaimer}</span>

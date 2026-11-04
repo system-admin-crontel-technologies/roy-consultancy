@@ -9,7 +9,7 @@ Conventions:
 - Self-contained: the site never imports from `src/components/admin`, and uses its own stylesheet
   `src/styles/site.css` (plain CSS, `s-` prefixed classes, tokens from the handoff) rather than the admin
   Tailwind tokens in `src/styles/globals.css`.
-- Copy lives in `src/lib/site/content.ts`; contact details and toggles in `src/lib/site/config.ts`
+- Copy lives in `src/lib/site/content.ts` (Privacy Policy and Terms in `src/lib/site/legal.ts`); contact details and toggles in `src/lib/site/config.ts`
   (driven by `NEXT_PUBLIC_*` variables, inlined at build time).
 - Pages are static. Anything that reads `usePathname()` or `useSearchParams()` sits inside `<Suspense>`
   so the page still prerenders under Cache Components.

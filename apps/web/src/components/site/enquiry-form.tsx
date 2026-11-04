@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { CHIPS, DEFAULT_CHIP, isChip, type Chip } from "@/lib/site/content";
@@ -116,6 +117,9 @@ export function EnquiryForm() {
       <button type="submit" className="s-btn s-btn--lg s-form__submit" disabled={sending}>
         {sending ? "Sending…" : "Send enquiry"}
       </button>
+      <p className="s-note">
+        We use these details to respond to your enquiry. See our <Link href="/privacy-policy">Privacy Policy</Link>.
+      </p>
     </form>
   );
 }
