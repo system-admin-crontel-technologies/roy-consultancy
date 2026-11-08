@@ -450,3 +450,23 @@ model WebsiteEnquiry {
   @@index([phone])
   @@map("website_enquiries")
 }
+
+// ---------------------------------------------------------------------------
+// GST portal credentials (client logins for gst.gov.in kept by the practice)
+// ---------------------------------------------------------------------------
+
+/// Passwords are encrypted at the application layer (AES-256-GCM, CREDENTIALS_ENCRYPTION_KEY);
+/// the database never sees plaintext. Usernames are stored plain so they can be listed and searched.
+model GstCredential {
+  id                 String   @id @default(uuid()) @db.Uuid
+  clientName         String
+  username           String
+  passwordCiphertext String
+  createdById        String?  @db.Uuid
+  updatedById        String?  @db.Uuid
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@index([clientName])
+  @@map("gst_credentials")
+}

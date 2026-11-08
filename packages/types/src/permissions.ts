@@ -22,6 +22,8 @@ export const PERMISSIONS = {
   // Module 2: CRM
   'leads.read': 'View leads',
   'leads.manage': 'Create and update leads',
+  'gst_credentials.read': 'View GST portal client logins and copy their passwords',
+  'gst_credentials.manage': 'Add, edit and delete GST portal client logins',
   'clients.read': 'View clients',
   'clients.create': 'Create clients',
   'clients.update': 'Update clients',

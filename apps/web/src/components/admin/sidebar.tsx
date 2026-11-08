@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Briefcase, Inbox, LayoutDashboard, Plug, Settings, ShieldCheck, UserCircle, Users } from "lucide-react";
+import { Activity, Briefcase, Inbox, KeyRound, LayoutDashboard, Plug, Settings, ShieldCheck, UserCircle, Users } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
@@ -11,6 +11,7 @@ const NAV = [
   { href: "/admin/roles", label: "Roles & permissions", icon: ShieldCheck },
   { href: "/admin/catalogue", label: "Service catalogue", icon: Briefcase },
   { href: "/admin/enquiries", label: "Website enquiries", icon: Inbox },
+  { href: "/admin/gst-credentials", label: "GST credentials", icon: KeyRound },
   { href: "/admin/settings", label: "Settings", icon: Settings },
   { href: "/admin/integrations", label: "Integrations", icon: Plug },
   { href: "/admin/audit", label: "Audit log", icon: Activity },

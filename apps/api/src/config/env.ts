@@ -37,6 +37,9 @@ export const envSchema = z.object({
   SMTP_SECURE: bool.default(false),
   MAIL_FROM: z.string().default('Roy Consultancy <no-reply@localhost>'),
 
+  /** 32-byte key, base64 encoded, for encrypting stored third-party passwords. Generate: openssl rand -base64 32 */
+  CREDENTIALS_ENCRYPTION_KEY: z.string().optional(),
+
   CLAMAV_HOST: z.string().optional(),
   CLAMAV_PORT: z.coerce.number().int().default(3310),
 });

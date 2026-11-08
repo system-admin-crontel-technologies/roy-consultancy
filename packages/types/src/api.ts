@@ -232,3 +232,12 @@ export interface WebsiteEnquiry {
   createdAt: string;
   updatedAt: string;
 }
+
+/** A client's login for the official GST portal. The password is never part of this shape; fetch it with the reveal endpoint. */
+export interface GstCredential {
+  id: string;
+  clientName: string;
+  username: string;
+  createdAt: string;
+  updatedAt: string;
+}

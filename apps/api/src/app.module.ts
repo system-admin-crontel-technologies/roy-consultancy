@@ -13,6 +13,7 @@ import { AllExceptionsFilter } from './common/filters/http-exception.filter.js';
 import { EnquiriesModule } from './enquiries/enquiries.module.js';
 import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware.js';
 import { validateEnv } from './config/env.js';
+import { GstCredentialsModule } from './gst-credentials/gst-credentials.module.js';
 import { HealthModule } from './health/health.module.js';
 import { IntegrationsModule } from './integrations/integrations.module.js';
 import { MailModule } from './mail/mail.module.js';
@@ -54,6 +55,7 @@ import { UsersModule } from './users/users.module.js';
     IntegrationsModule,
     CatalogueModule,
     EnquiriesModule,
+    GstCredentialsModule,
     OverviewModule,
     HealthModule,
   ],
