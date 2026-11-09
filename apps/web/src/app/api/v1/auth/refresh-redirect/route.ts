@@ -24,7 +24,10 @@ export async function GET(request: NextRequest) {
   }
   const ok = upstream?.ok ?? false;
   const target = ok ? next : `/admin/login?next=${encodeURIComponent(next)}${upstream ? "" : cookie.includes("rc_refresh=") ? "&reason=api_unavailable" : ""}`;
-  const res = NextResponse.redirect(new URL(target, request.nextUrl.origin), 303);
+  // Relative Location on purpose: behind the reverse proxy `request.nextUrl.origin` is the container's
+  // bind address (https://0.0.0.0:3000), not the public domain. Browsers resolve a relative Location
+  // against the address they actually requested.
+  const res = new NextResponse(null, { status: 303, headers: { location: target, "cache-control": "no-store" } });
   if (upstream) for (const sc of upstream.headers.getSetCookie()) res.headers.append("set-cookie", sc);
   return res;
 }
