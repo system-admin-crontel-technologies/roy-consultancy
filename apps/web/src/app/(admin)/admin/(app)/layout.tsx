@@ -1,5 +1,5 @@
 import { Suspense, type ReactNode } from "react";
-import { Sidebar } from "@/components/admin/sidebar";
+import { MobileNav, Sidebar } from "@/components/admin/sidebar";
 import { UserMenu } from "@/components/admin/user-menu";
 import { Skeleton } from "@/components/ui/feedback";
 
@@ -10,9 +10,12 @@ export default function AdminAppLayout({ children }: { children: ReactNode }) {
         <Sidebar />
       </Suspense>
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex h-14 items-center justify-between border-b border-border bg-card px-4 md:px-8">
-          <p className="text-sm font-medium text-muted md:hidden">Roy Consultancy Admin</p>
-          <div className="ml-auto">
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-2 border-b border-border bg-card px-4 md:px-8">
+          <Suspense fallback={null}>
+            <MobileNav />
+          </Suspense>
+          <p className="truncate text-sm font-semibold md:hidden">Roy Consultancy</p>
+          <div className="ml-auto min-w-0">
             <Suspense fallback={<Skeleton className="h-8 w-44" />}>
               <UserMenu />
             </Suspense>

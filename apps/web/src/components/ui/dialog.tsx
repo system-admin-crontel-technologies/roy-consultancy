@@ -18,7 +18,7 @@ export function Dialog({ open, onClose, title, description, children, footer, wi
       onClick={(e) => {
         if (e.target === ref.current) onClose();
       }}
-      className={`m-auto w-full ${wide ? "max-w-3xl" : "max-w-lg"} rounded-lg border border-border bg-card p-0 text-foreground shadow-xl backdrop:bg-slate-900/40`}
+      className={`m-auto w-[calc(100%-2rem)] ${wide ? "max-w-3xl" : "max-w-lg"} rounded-lg border border-border bg-card p-0 text-foreground shadow-xl backdrop:bg-slate-900/40`}
     >
       <div className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
         <div>

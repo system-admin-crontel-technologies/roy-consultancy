@@ -8,7 +8,6 @@ import { api } from "@/lib/api/client";
 import { formatDateTime } from "@/lib/format";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
-import { TBody, TD, TR } from "@/components/ui/table";
 import { useToast } from "@/components/ui/toast";
 import { CredentialFormDialog } from "./credential-form-dialog";
 
@@ -41,18 +40,41 @@ function CopyButton({ label, getValue }: { label: string; getValue: () => string
     }
   }
   return (
-    <button type="button" onClick={onClick} className="rounded p-1.5 text-muted hover:bg-slate-200 hover:text-foreground" aria-label={`Copy ${label.toLowerCase()}`} title={`Copy ${label.toLowerCase()}`}>
+    <button type="button" onClick={onClick} className={iconBtn} aria-label={`Copy ${label.toLowerCase()}`} title={`Copy ${label.toLowerCase()}`}>
       {done ? <Check className="size-4 text-green-600" /> : <Copy className="size-4" />}
     </button>
   );
 }
 
-export function CredentialRows({ entries }: { entries: GstCredential[] }) {
+const iconBtn = "rounded p-2 text-muted hover:bg-slate-200 hover:text-foreground md:p-1.5";
+
+/**
+ * Table on desktop; on phones each row becomes a card (same elements, re-laid out with CSS)
+ * so per-row state such as a revealed password is not duplicated.
+ */
+export function CredentialTable({ entries }: { entries: GstCredential[] }) {
   return (
-    <TBody>
-      {entries.map((c) => <CredentialRow key={c.id} entry={c} />)}
-    </TBody>
+    <div className="md:overflow-x-auto">
+      <table className="w-full text-sm max-md:block">
+        <thead className="bg-slate-50 text-left text-xs font-medium uppercase tracking-wide text-muted max-md:hidden">
+          <tr>
+            <th className="px-4 py-2.5 font-medium">Client name</th>
+            <th className="px-4 py-2.5 font-medium">User ID</th>
+            <th className="px-4 py-2.5 font-medium">Password</th>
+            <th className="px-4 py-2.5 font-medium">Updated</th>
+            <th className="w-20 px-4 py-2.5"><span className="sr-only">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-border max-md:block">
+          {entries.map((c) => <CredentialRow key={c.id} entry={c} />)}
+        </tbody>
+      </table>
+    </div>
   );
+}
+
+function MobileLabel({ children }: { children: string }) {
+  return <span className="block text-[11px] font-medium uppercase tracking-wide text-muted md:hidden">{children}</span>;
 }
 
 function CredentialRow({ entry }: { entry: GstCredential }) {
@@ -71,30 +93,34 @@ function CredentialRow({ entry }: { entry: GstCredential }) {
   }
 
   return (
-    <TR>
-      <TD className="font-medium">{entry.clientName}</TD>
-      <TD>
+    <tr className="hover:bg-slate-50/60 max-md:grid max-md:grid-cols-[1fr_auto] max-md:gap-x-2 max-md:gap-y-2 max-md:px-4 max-md:py-4">
+      <td className="px-4 py-3 align-middle font-medium max-md:col-start-1 max-md:row-start-1 max-md:self-center max-md:p-0 max-md:text-base">{entry.clientName}</td>
+      <td className="px-4 py-3 align-middle max-md:col-span-2 max-md:p-0">
+        <MobileLabel>User ID</MobileLabel>
         <div className="flex items-center gap-1">
-          <span className="font-mono text-xs">{entry.username}</span>
+          <span className="break-all font-mono text-xs max-md:text-sm">{entry.username}</span>
           <CopyButton label="User ID" getValue={() => entry.username} />
         </div>
-      </TD>
-      <TD>
+      </td>
+      <td className="px-4 py-3 align-middle max-md:col-span-2 max-md:p-0">
+        <MobileLabel>Password</MobileLabel>
         <div className="flex items-center gap-1">
-          <span className="min-w-24 font-mono text-xs">{shown ?? "••••••••"}</span>
-          <button type="button" onClick={toggleShow} className="rounded p-1.5 text-muted hover:bg-slate-200 hover:text-foreground" aria-label={shown !== null ? "Hide password" : "Show password"} title={shown !== null ? "Hide password" : "Show password"}>
+          <span className="min-w-24 break-all font-mono text-xs max-md:text-sm">{shown ?? "••••••••"}</span>
+          <button type="button" onClick={toggleShow} className={iconBtn} aria-label={shown !== null ? "Hide password" : "Show password"} title={shown !== null ? "Hide password" : "Show password"}>
             {shown !== null ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
           </button>
           <CopyButton label="Password" getValue={() => shown ?? revealPassword(entry.id)} />
         </div>
-      </TD>
-      <TD className="whitespace-nowrap text-xs text-muted">{formatDateTime(entry.updatedAt)}</TD>
-      <TD className="text-right">
+      </td>
+      <td className="whitespace-nowrap px-4 py-3 align-middle text-xs text-muted max-md:col-span-2 max-md:p-0">
+        <span className="md:hidden">Updated </span>{formatDateTime(entry.updatedAt)}
+      </td>
+      <td className="px-4 py-3 text-right align-middle max-md:col-start-2 max-md:row-start-1 max-md:p-0">
         <div className="flex justify-end gap-1">
-          <button type="button" onClick={() => setEditing(true)} className="rounded p-1.5 text-muted hover:bg-slate-200 hover:text-foreground" aria-label={`Edit ${entry.clientName}`} title="Edit">
+          <button type="button" onClick={() => setEditing(true)} className={iconBtn} aria-label={`Edit ${entry.clientName}`} title="Edit">
             <Pencil className="size-4" />
           </button>
-          <button type="button" onClick={() => setDeleting(true)} className="rounded p-1.5 text-muted hover:bg-red-50 hover:text-danger" aria-label={`Delete ${entry.clientName}`} title="Delete">
+          <button type="button" onClick={() => setDeleting(true)} className="rounded p-2 text-muted hover:bg-red-50 hover:text-danger md:p-1.5" aria-label={`Delete ${entry.clientName}`} title="Delete">
             <Trash2 className="size-4" />
           </button>
         </div>
@@ -102,8 +128,8 @@ function CredentialRow({ entry }: { entry: GstCredential }) {
           <CredentialFormDialog open={editing} onClose={() => setEditing(false)} existing={entry} />
           <DeleteDialog entry={entry} open={deleting} onClose={() => setDeleting(false)} />
         </div>
-      </TD>
-    </TR>
+      </td>
+    </tr>
   );
 }
 

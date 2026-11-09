@@ -3,7 +3,7 @@ import { cn } from "@/lib/cn";
 
 export function Card({ title, description, actions, children, className, padded = true }: { title?: string; description?: string; actions?: ReactNode; children: ReactNode; className?: string; padded?: boolean }) {
   return (
-    <section className={cn("rounded-lg border border-border bg-card shadow-sm", className)}>
+    <section className={cn("min-w-0 rounded-lg border border-border bg-card shadow-sm", className)}>
       {title ? (
         <header className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
           <div>
